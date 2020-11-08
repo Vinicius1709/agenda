@@ -9,61 +9,61 @@ import java.util.List;
 
 import br.com.agenda.data.Conexao;
 import br.com.agenda.data.ConexaoMySql;
-import br.com.agenda.model.Usuario;
+import br.com.agenda.model.Local;
 
-public class UsuarioDAO {
+public class UsuariolDAO {
 
 	private final Conexao conexao;
-	
-	public UsuarioDAO() throws SQLException, ClassNotFoundException{
+
+	public UsuariolDAO() throws SQLException, ClassNotFoundException {
 		this.conexao = new ConexaoMySql();
 	}
-	
-	// Classe de CRUD
-	public void inserir(String nomeUsuario) throws SQLException{
-		String sqlQuery = "insert into usuario(nome) value (?);";
-		
+
+	// Classe CRUD
+	public void inserir(String nomeLocal) throws SQLException {
+		String sqlQuery = "insert into local(nome) value (?);";
+
 		try {
 			PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sqlQuery);
-			stmt.setString(1, nomeUsuario);
+			stmt.setString(1, nomeLocal);
 			stmt.execute();
-			
+
 			this.conexao.commit();
 		} catch (SQLException e) {
 			this.conexao.rollback();
 			throw e;
 		}
 	}
-	
-	//Create
+
+	// Create
 	public void inserir() {
-		String query = "Insert into usuario(nome) value (?);";
+		String query = "Insert into local(nome) value (?);";
 	}
-	
-	//Read
-	public List<Usuario> listarTudo() throws SQLException, ClassNotFoundException{
-		String sql = "select id, nome from usuario order by nome";
-		
+
+	// Read
+	public List<Local> listarTudo() throws SQLException, ClassNotFoundException {
+		String sql = "SELECT id, nome FROM local order by id";
+
 		try {
-			PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
-			ResultSet rs = stmt.executeQuery();
-			
-			List<Usuario> listaPesquisada = new ArrayList<Usuario>();
-			
+			PreparedStatement st = this.conexao.getConnection().prepareStatement(sql);
+			ResultSet rs = st.executeQuery();
+
+			List<Local> listaPesquisada = new ArrayList<>();
+
 			while (rs.next()) {
-				Usuario usuario = new Usuario(rs.getLong("id"), rs.getString("nome"));
-				listaPesquisada.add(usuario);
+				Local local = new Local(rs.getLong("id"), rs.getString("nome"));
+				listaPesquisada.add(local);
 			}
-			
+
 			return listaPesquisada;
 		} catch (SQLException exception) {
 			throw exception;
 		}
 	}
-	
-	//Update
+
+	// Update
 	public void alterar(String nomeAtualizado, Long id) throws SQLException, ClassNotFoundException {
-		String sql = "update usuario set nome = ? where id = ?";
+		String sql = "update local set nome = ? where id = ?";
 
 		try {
 			PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
@@ -81,7 +81,7 @@ public class UsuarioDAO {
 
 	// Delete
 	public void excluir(Long id) throws SQLException, ClassNotFoundException {
-		String sql = "Delete from usuario where id = ?";
+		String sql = "Delete from local where id = ?";
 
 		try {
 			PreparedStatement stmt = this.conexao.getConnection().prepareStatement(sql);
@@ -95,4 +95,5 @@ public class UsuarioDAO {
 
 		}
 	}
+
 }
