@@ -11,11 +11,11 @@ import br.com.agenda.data.Conexao;
 import br.com.agenda.data.ConexaoMySql;
 import br.com.agenda.model.Local;
 
-public class UsuariolDAO {
+public class LocalDAO {
 
 	private final Conexao conexao;
 
-	public UsuariolDAO() throws SQLException, ClassNotFoundException {
+	public LocalDAO() throws SQLException, ClassNotFoundException {
 		this.conexao = new ConexaoMySql();
 	}
 

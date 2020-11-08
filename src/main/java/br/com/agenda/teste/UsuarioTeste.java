@@ -2,7 +2,7 @@ package br.com.agenda.teste;
 
 import java.sql.SQLException;
 
-import br.com.agenda.dao.UsuariolDAO;
+import br.com.agenda.dao.LocalDAO;
 import br.com.agenda.dao.UsuarioDAO;
 
 public class UsuarioTeste {

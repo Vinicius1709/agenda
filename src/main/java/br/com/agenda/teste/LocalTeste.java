@@ -1,7 +1,7 @@
 package br.com.agenda.teste;
 
 import java.sql.SQLException;
-import br.com.agenda.dao.UsuariolDAO;
+import br.com.agenda.dao.LocalDAO;
 
 public class LocalTeste {
 
@@ -14,14 +14,14 @@ public class LocalTeste {
 		 */
 
 		System.out.println("Lista Desatualizada");
-		UsuariolDAO dao = new UsuariolDAO();
+		LocalDAO dao = new LocalDAO();
 		System.out.println(dao.listarTudo());
 
-		UsuariolDAO daoUpadate = new UsuariolDAO();
+		LocalDAO daoUpadate = new LocalDAO();
 		daoUpadate.alterar("UniBox", 2L);
 
 		System.out.println("Lista Atualizada");
-		UsuariolDAO pesq = new UsuariolDAO();
+		LocalDAO pesq = new LocalDAO();
 		System.out.println(pesq.listarTudo());
 
 		/*
